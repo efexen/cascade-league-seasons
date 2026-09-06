@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "generations": [
+    {
+      "seasonId": "0003",
+      "generationId": "0001",
+      "path": "seasons/0003/0001/index.html"
+    },
+    {
+      "seasonId": "0003",
+      "generationId": "0002",
+      "path": "seasons/0003/0002/index.html"
+    }
+  ]
+}

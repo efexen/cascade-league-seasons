@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "seasonId": "0003",
+  "generationId": "0001",
+  "generatedAt": "2026-09-06T11:07:59.794Z",
+  "stylesheetKind": "fallback",
+  "championContestantId": "codex-terra-low",
+  "championDisplayName": "Codex CLI + GPT-5.6 Terra (low)",
+  "championReason": "Codex CLI + GPT-5.6 Terra (low) remains the numeric rank-1 champion, but its CSS could not safely present required public content; the archived fallback stylesheet is used.",
+  "expectedJudgeCount": 3,
+  "entries": [
+    {
+      "contestantId": "codex-terra-low",
+      "displayName": "Codex CLI + GPT-5.6 Terra (low)",
+      "rank": 1,
+      "status": "valid"
+    },
+    {
+      "contestantId": "opencode-qwen-38-flash",
+      "displayName": "OpenCode Go + Qwen3.8 Flash",
+      "rank": 2,
+      "status": "valid"
+    },
+    {
+      "contestantId": "opencode-glm-53-flash",
+      "displayName": "OpenCode Go + GLM-5.3 Flash",
+      "rank": 3,
+      "status": "valid"
+    },
+    {
+      "contestantId": "codex-luna-medium",
+      "displayName": "Codex CLI + GPT-5.6 Luna (medium)",
+      "rank": 4,
+      "status": "valid"
+    }
+  ]
+}

@@ -1,0 +1,719 @@
+@font-face {
+  font-family: "LM Neutral Sans";
+  src: url("fonts/lm-neutral-sans.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "LM Display Sans";
+  src: url("fonts/lm-display-sans.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "LM Readable Serif";
+  src: url("fonts/lm-readable-serif.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "LM Expressive Serif";
+  src: url("fonts/lm-expressive-serif.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "LM Mono";
+  src: url("fonts/lm-mono.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --board: #ddd0ae;
+  --sheet: #f4edda;
+  --sheet-2: #f8f3e4;
+  --ink: #26200f;
+  --ink-soft: rgba(38, 32, 15, 0.64);
+  --ink-faint: rgba(38, 32, 15, 0.34);
+  --line: rgba(38, 32, 15, 0.34);
+  --line-soft: rgba(38, 32, 15, 0.16);
+  --leaf: #32542a;
+  --leaf-soft: rgba(50, 84, 42, 0.09);
+  --rust: #99421f;
+  --gut: 96px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--board);
+}
+
+body#cascade-league {
+  position: relative;
+  margin: 0;
+  padding: 0 0 72px;
+  font-family: "LM Readable Serif", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--board);
+  background-image:
+    radial-gradient(1400px 700px at 50% -200px, rgba(255, 248, 224, 0.5), rgba(255, 248, 224, 0) 62%),
+    radial-gradient(1100px 800px at 100% 105%, rgba(88, 62, 20, 0.14), rgba(88, 62, 20, 0) 55%),
+    repeating-linear-gradient(90deg, rgba(38, 32, 15, 0.03) 0 2px, rgba(38, 32, 15, 0) 2px 5px);
+  -webkit-font-smoothing: antialiased;
+}
+body#cascade-league::before {
+  content: "Season " attr(data-season) " · Generation " attr(data-generation) " · Seed field";
+  position: absolute;
+  left: 16px;
+  top: 148px;
+  writing-mode: vertical-rl;
+  font-family: "LM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.44em;
+  text-transform: uppercase;
+  color: rgba(38, 32, 15, 0.5);
+}
+
+.page-shell {
+  position: relative;
+  width: 1164px;
+  margin: 56px auto 0;
+  padding: 0 var(--gut) 0 var(--gut);
+  background: linear-gradient(180deg, #f6efdd 0%, #f3ebd5 55%, #efe6cd 100%);
+  border-left: 1px solid rgba(38, 32, 15, 0.28);
+  border-right: 1px solid rgba(38, 32, 15, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(255, 252, 240, 0.6),
+    0 24px 64px rgba(58, 44, 12, 0.28);
+}
+
+.masthead {
+  position: relative;
+  padding: 84px 0 0;
+}
+
+.masthead::before {
+  content: "";
+  position: absolute;
+  inset: 64px 0 auto 0;
+  height: 5px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0 0 26px;
+  font-family: "LM Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.eyebrow::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.site-title {
+  margin: 0 0 26px;
+  max-width: 17ch;
+  font-family: "LM Expressive Serif", "LM Readable Serif", serif;
+  font-size: 74px;
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+
+.site-description {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.generation-meta {
+  display: flex;
+  margin: 46px 0 0;
+  padding: 26px 0 30px;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+.generation-meta > div {
+  padding: 0 56px 0 0;
+  margin-right: 56px;
+  border-right: 1px dotted var(--line);
+}
+
+.generation-meta > div:last-child {
+  border-right: 0;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.generation-meta dt {
+  font-family: "LM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.generation-meta dd {
+  margin: 8px 0 0;
+  font-family: "LM Expressive Serif", serif;
+  font-size: 34px;
+  line-height: 1.1;
+}
+
+.generation-meta div:last-child dd {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.status-badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 9px 16px 8px;
+  font-family: "LM Display Sans", "LM Mono", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rust);
+  border: 1px solid var(--rust);
+  outline: 1px solid var(--rust);
+  outline-offset: 3px;
+  transform: rotate(-1.4deg);
+  background: rgba(153, 66, 31, 0.05);
+}
+
+.main-content {
+  counter-reset: plate;
+  padding-bottom: 8px;
+}
+
+.main-content > section {
+  counter-increment: plate;
+  position: relative;
+  padding-top: 88px;
+}
+
+.main-content > section::before {
+  content: "Plate " counter(plate, decimal-leading-zero);
+  position: absolute;
+  top: 88px;
+  left: -74px;
+  writing-mode: vertical-rl;
+  font-family: "LM Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(50, 84, 42, 0.9);
+}
+
+.main-content > section::after {
+  content: "";
+  position: absolute;
+  top: 84px;
+  bottom: 30px;
+  left: -38px;
+  width: 1px;
+  background: repeating-linear-gradient(180deg, rgba(50, 84, 42, 0.55) 0 5px, rgba(50, 84, 42, 0) 5px 14px);
+}
+
+.section-header {
+  margin-bottom: 12px;
+}
+
+.section-kicker {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 14px;
+  font-family: "LM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.section-kicker::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--leaf);
+}
+
+.section-title {
+  margin: 0;
+  font-family: "LM Expressive Serif", serif;
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.008em;
+  max-width: 24ch;
+}
+
+#introduction .section-title {
+  max-width: 18ch;
+  margin-bottom: 24px;
+}
+
+.lede {
+  margin: 0;
+  max-width: 66ch;
+  font-size: 22px;
+  line-height: 1.62;
+  color: var(--ink);
+}
+
+.central-question {
+  position: relative;
+  margin: 52px 0 0;
+  padding: 46px 52px 42px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--leaf);
+  background: var(--leaf-soft);
+}
+
+.central-question::before {
+  content: "\201C";
+  position: absolute;
+  top: -46px;
+  left: 34px;
+  font-family: "LM Expressive Serif", serif;
+  font-size: 150px;
+  line-height: 1;
+  color: rgba(50, 84, 42, 0.22);
+}
+
+.central-question p {
+  margin: 0;
+  font-family: "LM Expressive Serif", serif;
+  font-style: italic;
+  font-size: 31px;
+  line-height: 1.35;
+  max-width: 30ch;
+}
+
+.rules-list {
+  list-style: none;
+  counter-reset: rule;
+  margin: 44px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--ink);
+}
+
+.rule {
+  counter-increment: rule;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: baseline;
+  gap: 28px;
+  margin: 0;
+  padding: 24px 10px 22px;
+  border-bottom: 1px dotted var(--line);
+  font-size: 19px;
+}
+
+.rule::before {
+  content: counter(rule, upper-roman);
+  font-family: "LM Expressive Serif", serif;
+  font-size: 38px;
+  line-height: 1;
+  text-align: right;
+  color: var(--leaf);
+  opacity: 0.82;
+}
+
+.leaderboard-grid {
+  list-style: none;
+  counter-reset: seed;
+  margin: 48px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 44px;
+}
+
+.entry {
+  counter-increment: seed;
+}
+
+.entry-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 30px 30px 28px;
+  background: var(--sheet-2);
+  border: 1px solid var(--line);
+  box-shadow:
+    inset 0 0 0 1px var(--sheet-2),
+    inset 0 0 0 2px rgba(50, 84, 42, 0.28),
+    0 14px 30px rgba(58, 44, 12, 0.12);
+}
+
+.entry[data-status="seed"] .entry-card {
+  background-image: repeating-linear-gradient(45deg, rgba(50, 84, 42, 0.022) 0 10px, rgba(50, 84, 42, 0) 10px 20px);
+}
+
+.entry-header {
+  border-bottom: 1px dotted var(--line);
+  padding-bottom: 18px;
+}
+
+.entry-rank {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: "LM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.entry-rank::before {
+  content: "Seed No. " counter(seed, decimal-leading-zero);
+}
+
+.entry-rank::after {
+  content: "\00B7";
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.entry-title {
+  margin: 8px 0 6px;
+  font-family: "LM Expressive Serif", serif;
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.entry-identity {
+  margin: 0;
+  font-family: "LM Mono", monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+.entry-harness {
+  color: var(--leaf);
+}
+
+.entry-model {
+  color: var(--ink-soft);
+  font-style: normal;
+}
+
+.entry-visual {
+  margin: 24px 0 22px;
+  padding: 13px;
+  background: #ece3ca;
+  border: 1px solid var(--line);
+}
+
+.entry-thumbnail {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(38, 32, 15, 0.22);
+  filter: sepia(0.34) saturate(0.68) contrast(1.06) brightness(1.01);
+  mix-blend-mode: multiply;
+}
+
+.entry-caption {
+  margin-top: 13px;
+  font-family: "LM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.entry-scores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  margin: auto 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.entry-scores > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.entry-scores dt {
+  font-family: "LM Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.entry-scores dd {
+  margin: 0;
+  font-family: "LM Expressive Serif", serif;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--ink-faint);
+}
+
+.entry-awards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entry-detail-link {
+  align-self: flex-start;
+  margin-top: 24px;
+  padding-bottom: 4px;
+  font-family: "LM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--leaf);
+  text-decoration: none;
+  border-bottom: 1px solid var(--leaf);
+}
+
+.entry-detail-link::after {
+  content: " \00BB";
+}
+
+#awards .empty-state {
+  margin: 46px 0 0;
+  padding: 62px 36px;
+  text-align: center;
+  font-family: "LM Expressive Serif", serif;
+  font-style: italic;
+  font-size: 23px;
+  color: var(--ink-soft);
+  border: 1px dotted var(--line);
+  background:
+    repeating-linear-gradient(-45deg, rgba(38, 32, 15, 0.018) 0 12px, rgba(38, 32, 15, 0) 12px 24px);
+}
+
+#awards .empty-state::before,
+#awards .empty-state::after {
+  content: "\2014 ";
+  color: var(--ink-faint);
+}
+
+#awards .empty-state::after {
+  content: " \2014";
+}
+
+#method > p {
+  margin: 36px 0 0;
+  max-width: 72ch;
+  font-size: 19px;
+  line-height: 1.78;
+  color: var(--ink);
+}
+
+#method > p::first-letter {
+  float: left;
+  padding: 8px 16px 0 0;
+  font-family: "LM Expressive Serif", serif;
+  font-size: 84px;
+  line-height: 0.78;
+  color: var(--leaf);
+}
+
+.judge-matrix {
+  width: 100%;
+  margin-top: 46px;
+  border-collapse: collapse;
+  background: rgba(255, 251, 238, 0.45);
+  border: 1px solid var(--line);
+}
+
+.judge-matrix caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0 0 12px;
+  font-family: "LM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.judge-matrix thead th {
+  padding: 16px 14px 13px;
+  font-family: "LM Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--leaf);
+  border-bottom: 2px solid var(--ink);
+}
+
+.judge-matrix thead th:first-child {
+  text-align: left;
+}
+
+.judge-matrix tbody th {
+  padding: 17px 14px;
+  text-align: left;
+  font-family: "LM Readable Serif", serif;
+  font-size: 16.5px;
+  font-weight: 500;
+  border-bottom: 1px dotted var(--line);
+}
+
+.judge-matrix tbody td {
+  padding: 17px 14px;
+  text-align: center;
+  font-family: "LM Readable Serif", serif;
+  font-size: 16px;
+  border-bottom: 1px dotted var(--line);
+  color: var(--ink-soft);
+}
+
+.judge-matrix tbody tr:nth-child(even) th,
+.judge-matrix tbody tr:nth-child(even) td {
+  background: rgba(38, 32, 15, 0.028);
+}
+
+.judge-matrix-cell[data-status="placeholder"] {
+  color: var(--ink-faint);
+}
+
+.judge-matrix-combined {
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  background: var(--leaf-soft) !important;
+  color: var(--leaf) !important;
+}
+
+.judge-matrix-range {
+  font-family: "LM Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+.entry-detail {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  margin-top: 0;
+  padding: 28px 6px 26px;
+  border-bottom: 1px dotted var(--line);
+}
+
+.entry-detail:first-of-type {
+  margin-top: 64px;
+  border-top: 1px solid var(--ink);
+}
+
+.entry-detail-header h3 {
+  margin: 0 0 6px;
+  font-family: "LM Expressive Serif", serif;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.entry-detail-header p {
+  margin: 0;
+  font-family: "LM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.entry-operational-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin: 0 0 18px;
+}
+
+.entry-operational-details > div {
+  border-top: 1px solid var(--line-soft);
+  padding-top: 8px;
+}
+
+.entry-operational-details dt {
+  font-family: "LM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.entry-operational-details dd {
+  margin: 4px 0 0;
+  font-family: "LM Mono", monospace;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.entry-detail .empty-state {
+  margin: 0;
+  padding: 16px 20px;
+  font-style: italic;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  border: 1px dotted var(--line);
+  background: rgba(255, 251, 238, 0.4);
+}
+
+.site-footer {
+  margin-top: 116px;
+  padding: 36px 0 70px;
+  border-top: 3px double rgba(38, 32, 15, 0.6);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0 0 10px;
+  font-family: "LM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+.site-footer p:last-child {
+  margin-bottom: 0;
+  text-transform: none;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+.site-footer p:first-child::before {
+  content: "\00B7 \00B7 \00B7";
+  display: block;
+  letter-spacing: 1.1em;
+  text-indent: 1.1em;
+  margin-bottom: 22px;
+  color: var(--leaf);
+}
