@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "seasonId": "0003",
+  "generationId": "0004",
+  "generatedAt": "2026-09-19T08:58:33.362Z",
+  "sourceGenerationIdentity": "sha256:d944b3702daff1e2f76ed321d4867433b33d640ffa7d867762ace4fbdd520f24",
+  "stylesheetKind": "champion",
+  "championContestantId": "codex-luna-medium",
+  "championDisplayName": "Codex CLI + GPT-5.6 Luna (medium)",
+  "championReason": "Codex CLI + GPT-5.6 Luna (medium) is the highest-ranked candidate with a valid judge result.",
+  "expectedJudgeCount": 3,
+  "entries": [
+    {
+      "contestantId": "codex-luna-medium",
+      "displayName": "Codex CLI + GPT-5.6 Luna (medium)",
+      "rank": 1,
+      "status": "valid"
+    },
+    {
+      "contestantId": "codex-terra-low",
+      "displayName": "Codex CLI + GPT-5.6 Terra (low)",
+      "rank": 2,
+      "status": "valid"
+    },
+    {
+      "contestantId": "opencode-glm-53-flash",
+      "displayName": "OpenCode Go + GLM-5.3 Flash",
+      "rank": 3,
+      "status": "valid"
+    },
+    {
+      "contestantId": "opencode-qwen-38-flash",
+      "displayName": "OpenCode Go + Qwen3.8 Flash",
+      "rank": null,
+      "status": "timeout"
+    }
+  ]
+}
