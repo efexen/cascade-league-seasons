@@ -20,6 +20,11 @@
       "seasonId": "0003",
       "generationId": "0004",
       "path": "seasons/0003/0004/index.html"
+    },
+    {
+      "seasonId": "0003",
+      "generationId": "0005",
+      "path": "seasons/0003/0005/index.html"
     }
   ]
 }
